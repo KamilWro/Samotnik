@@ -1,7 +1,6 @@
+import models.Samotnik;
 
-import Model.Samotnik;
 /**
- * 
  * @author kamil
  */
 public class Main {
