@@ -1,6 +1,5 @@
 package listeners;
 
-
 import models.Samotnik;
 import util.GameVersion;
 
@@ -10,11 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Formatter;
 
-/**
- * Klasa nasłuchująca zdarzenia z menu
- *
- * @author kamil
- */
+
 public class MenuBarListener implements ActionListener {
 
     private final Samotnik samotnik;
@@ -24,11 +19,6 @@ public class MenuBarListener implements ActionListener {
         this.samotnik = Samotnik.getInstance();
     }
 
-    /**
-     * Słuchacz okienkowy (metoda jest wywołana po naciśnięciu przycisku na planszy)
-     *
-     * @param e
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String source = e.getActionCommand();

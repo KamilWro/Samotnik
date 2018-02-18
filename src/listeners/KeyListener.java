@@ -6,11 +6,6 @@ import models.Samotnik;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Obsługuje wciśnięte klawisze podczas gry
- *
- * @author kamil
- */
 public class KeyListener implements ActionListener {
     private final Board board;
     private int x, y;
@@ -28,35 +23,30 @@ public class KeyListener implements ActionListener {
                 break;
             }
             case "Lewo": {
-                next("W");
+                nextCounter("W");
                 board.move(x, y, true);
                 break;
             }
             case "Prawo": {
-                next("E");
+                nextCounter("E");
                 board.move(x, y, true);
                 break;
             }
             case "Gora": {
-                next("N");
+                nextCounter("N");
                 board.move(x, y, true);
                 break;
             }
             case "Dol": {
-                next("S");
+                nextCounter("S");
                 board.move(x, y, true);
                 break;
             }
         }
         Samotnik.getInstance().update();
     }
-
-    /**
-     * Wybiera następny pionek po wybraniu kierunku
-     *
-     * @param direction
-     */
-    private void next(String direction) {
+    
+    private void nextCounter(String direction) {
         x = board.getSelectedX();
         y = board.getSelectedY();
         switch (direction) {

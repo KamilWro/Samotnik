@@ -1,19 +1,14 @@
 package models;
 
 import util.GameVersion;
+import util.Turn;
 
-/**
- * Tablica z pionkami
- *
- * @author kamil
- */
 public class Board {
     private GameVersion version;
     private boolean[][] available;
     private boolean[][] filled;
     private int numberOfCounters;
-    private int turn;
-    private boolean selected;
+    private Turn turn;
     private int selectedX;
     private int selectedY;
 
@@ -28,8 +23,7 @@ public class Board {
         numberOfCounters = version.getNumberOfCounter();
 
         filled[version.getStartX()][version.getStartY()] = false;
-        selected = false;
-        turn = 1;
+        turn = Turn.MOVEMENT;
         selectedX = version.getStartX();
         selectedY = version.getStartY();
     }
@@ -38,15 +32,12 @@ public class Board {
      * Metoda wykonująca się przy próbie wybrania pionka
      */
     public void select() {
-        if (turn == 2) {
-            turn = 1;
-            selected = false;
+        if (turn == Turn.SELECTION) {
+            turn = Turn.MOVEMENT;
         } else if (isFilled(selectedX, selectedY)) {
-            turn = 2;
-            selected = true;
+            turn = Turn.SELECTION;
         } else {
-            turn = 1;
-            selected = false;
+            turn = Turn.MOVEMENT;
         }
     }
 
@@ -59,13 +50,13 @@ public class Board {
      */
     public void move(int x, int y, boolean keyboard) {
         switch (turn) {
-            case 1:
+            case MOVEMENT:
                 if (isAvailable(x, y)) {
                     selectedY = y;
                     selectedX = x;
                 }
                 break;
-            case 2:
+            case SELECTION:
                 if (keyboard) {
                     x = x + (x - selectedX);
                     y = y + (y - selectedY);
@@ -78,35 +69,23 @@ public class Board {
                     selectedY = y;
                     selectedX = x;
                 }
-                turn = 1;
-                selected = false;
+                turn = Turn.MOVEMENT;
                 break;
         }
     }
 
-    /**
-     * Metoda pomocnicza służąca do poruszania się po planszy za pomocą myszki
-     *
-     * @param y Wspolrzedne Y wybranego pionka
-     * @param x Wspolrzedne X wybranwgo pionka
-     */
     public void moveMouse(int y, int x) {
         switch (turn) {
-            case 1:
+            case MOVEMENT:
                 move(x, y, false);
                 select();
                 break;
-            case 2:
+            case SELECTION:
                 move(x, y, false);
                 break;
         }
     }
 
-    /**
-     * Sprawdza czy jest możliwy jeszcze ruch na planszy
-     *
-     * @return
-     */
     public boolean isPossibleMove() {
         for (int i = 0; i < version.getMaxRow(); i++)
             for (int j = 0; j < version.getStartY(); j++) {
@@ -157,6 +136,6 @@ public class Board {
     }
 
     public boolean isSelected() {
-        return selected;
+        return turn == Turn.SELECTION;
     }
 }

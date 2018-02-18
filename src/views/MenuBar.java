@@ -1,17 +1,12 @@
 package views;
 
-
 import listeners.KeyListener;
 import listeners.MenuBarListener;
 import models.Board;
 
 import javax.swing.*;
 
-/**
- * Klasa reprezentująca Menu główne Okienka gry
- *
- * @author kamil
- */
+
 public class MenuBar extends JMenuBar {
     private final JMenu gameMenu, moveMenu, settingsMenu, helpMenu, colorSelectMenu;
     private final JMenuItem mNewGame, mEnd, mSelect, mLeft, mRight, mUp, mDown, mIGame, mIAuthor, mBackgroundColor, mCounterColor, mPointColor, mRed, mBlue;

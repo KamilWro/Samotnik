@@ -5,11 +5,6 @@ import models.Board;
 
 import javax.swing.*;
 
-/**
- * Menu nawigacyjne po wciśnięciu prawego przycisku myszy
- *
- * @author kamil
- */
 public class PopupMenu extends JPopupMenu {
 
     private final JMenuItem mRight, mLeft, mUp, mDown;

@@ -1,16 +1,10 @@
 package models;
 
-
 import util.GameVersion;
 import views.Window;
 
 import java.awt.*;
 
-/**
- * Klasa opakowująca narzedzia do poprawnej rozgrywki
- *
- * @author kamil
- */
 public class Samotnik {
 
     private static Samotnik INSTANCE;

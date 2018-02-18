@@ -7,11 +7,6 @@ import models.Samotnik;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Klasa prezentująca interfejs graficzny gry Samotnik
- *
- * @author kamil
- */
 public class Window extends JFrame {
     private final MenuBar menu;
     private final Panel panel;
@@ -45,9 +40,6 @@ public class Window extends JFrame {
         addMouseListener(new MouseListener(this, board));
     }
 
-    /**
-     * Aktualizuje podgląd gry
-     */
     public void update() {
         if (Samotnik.getInstance().isEnd()) {
             label.setText("Gra skonczona, pozostalo: " + board.getNumberOfCounters() + " pionkow");

@@ -8,11 +8,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Nasłuchująca myszke, wywołana po kliknięciu na plansze
- *
- * @author kamil
- */
 public class MouseListener extends MouseAdapter {
 
     private final Samotnik samotnik;
