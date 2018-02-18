@@ -1,8 +1,8 @@
 package util;
 
 public enum GameVersion {
-    European(37, 7, 7, 3, 3),
-    British(32, 7, 7, 3, 3);
+    EUROPEAN(37, 7, 7, 3, 3),
+    BRITISH(32, 7, 7, 3, 3);
 
     private int numberOfCounter;
     private int maxRow;
@@ -19,7 +19,7 @@ public enum GameVersion {
     }
 
     public boolean[][] getBoard() {
-        if (this == British) {
+        if (this == BRITISH) {
             return createBritishBoard();
         }
 

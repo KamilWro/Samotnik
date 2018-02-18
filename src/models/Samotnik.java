@@ -24,7 +24,7 @@ public class Samotnik {
         backgroundColor = Color.ORANGE;
         pointColor = Color.LIGHT_GRAY;
         selectionColor = Color.RED;
-        version = GameVersion.British;
+        version = GameVersion.BRITISH;
     }
 
     public static Samotnik getInstance() {

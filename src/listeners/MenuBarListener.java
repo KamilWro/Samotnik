@@ -88,10 +88,10 @@ public class MenuBarListener implements ActionListener {
                 samotnik.setSelectionColor(Color.BLUE);
                 break;
             case "Bryt":
-                samotnik.setVersion(GameVersion.British);
+                samotnik.setVersion(GameVersion.BRITISH);
                 break;
             case "Euro":
-                samotnik.setVersion(GameVersion.European);
+                samotnik.setVersion(GameVersion.EUROPEAN);
                 break;
         }
         samotnik.update();
