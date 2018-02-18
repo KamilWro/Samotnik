@@ -3,6 +3,7 @@ package views;
 import listeners.MouseListener;
 import models.Board;
 import models.Samotnik;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class Window extends JFrame {
         this.board = board;
         panel = new Panel(board);
         menu = new MenuBar(board);
-        label = new JLabel("STAN GRY");
+        label = new JLabel(Util.getResourceBundle().getString("game.state"));
         add();
         settings();
     }
@@ -42,11 +43,11 @@ public class Window extends JFrame {
 
     public void update() {
         if (Samotnik.getInstance().isEnd()) {
-            label.setText("Gra skonczona, pozostalo: " + board.getNumberOfCounters() + " pionkow");
+            label.setText(Util.getResourceBundle().getString("game.state.over") + board.getNumberOfCounters());
             menu.update(true);
             panel.repaint();
         } else {
-            label.setText("Gra trwa, pozostalo: " + board.getNumberOfCounters() + " pionkow");
+            label.setText(Util.getResourceBundle().getString("game.state.continues") + board.getNumberOfCounters());
             getContentPane().setBackground(Samotnik.getInstance().getBackgroundColor());
             panel.repaint();
             menu.update(false);

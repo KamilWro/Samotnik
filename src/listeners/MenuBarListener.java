@@ -2,13 +2,13 @@ package listeners;
 
 import models.Samotnik;
 import util.GameVersion;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Formatter;
-
 
 public class MenuBarListener implements ActionListener {
 
@@ -29,35 +29,45 @@ public class MenuBarListener implements ActionListener {
             case "GAME_OVER":
                 samotnik.close();
                 break;
-            case "ABOUT_GAME":
-                String s = "Najprawdopodobniej samotnik, to gra wymyślona w XII wieku we Francji przez więźnia \n"
-                        + "przebywającego w Bastylii, który uprzyjemniał sobie czas spędzony w odosobnieniu. \n"
-                        + "Samotnik, jest prostą grą logiczną dla jednej osoby.Pole do gry ma kształt krzyża z \n"
-                        + "jednym pustym polem w środku oraz 32 polami zapełnionymi. W grze jedynym dozwolonym \n"
-                        + "ruchem jest przeskoczenie pionka innym pionkiem w pionie lub w poziomie, co powoduje zbicie \n"
-                        + "przeskoczonego pionka. Celem gry jest pozostawienie na planszy jednego pionka, \n"
-                        + "najlepiej jeśli będzie to pionek w centrum.";
-                JOptionPane.showMessageDialog(null, s, "O Grze", JOptionPane.INFORMATION_MESSAGE);
+            case "ABOUT_GAME": {
+                String text = Util.getResourceBundle().getString("modal.about_game.text");
+                String title = Util.getResourceBundle().getString("modal.about_game.title");
+                JOptionPane.showMessageDialog(null, text, title, JOptionPane.INFORMATION_MESSAGE);
                 break;
-            case "ABOUT_AUTHOR":
-                Formatter formatter = new Formatter();
-                formatter.format("%-25s %s %n%-23s %s %n%-17s %s", "Autor:", "Kamil Breczko", "Wersja:", "1.1", "Data wydania:", "09 12 2016");
+            }
+            case "ABOUT_APPLICATION": {
+                String title = Util.getResourceBundle().getString("modal.about_application.title");
+                String author = Util.getResourceBundle().getString("modal.about_application.author");
+                String authorValue = Util.getResourceBundle().getString("modal.about_application.author.value");
+                String version = Util.getResourceBundle().getString("modal.about_application.version");
+                String versionValue = Util.getResourceBundle().getString("modal.about_application.version.value");
+                String releaseDate = Util.getResourceBundle().getString("modal.about_application.releaseDate");
+                String releaseDateValue = Util.getResourceBundle().getString("modal.about_application.releaseDate.value");
 
-                JOptionPane.showMessageDialog(null, formatter.toString(), "O Aplikacji", JOptionPane.INFORMATION_MESSAGE);
+                Formatter formatter = new Formatter();
+                formatter.format("%-25s %s %n%-23s %s %n%-17s %s", author, authorValue, version, versionValue, releaseDate, releaseDateValue);
+
+                JOptionPane.showMessageDialog(null, formatter.toString(), title, JOptionPane.INFORMATION_MESSAGE);
                 break;
-            case "BACKGROUND_COLOR":
+            }
+            case "BACKGROUND_COLOR": {
+                String title = Util.getResourceBundle().getString("modal.background_color.title");
                 color = samotnik.getBackgroundColor();
-                color = JColorChooser.showDialog(null, "Wybierz kolor tla planszy", color);
+                color = JColorChooser.showDialog(null, title, color);
                 samotnik.setBackgroundColor(color);
                 break;
-            case "COUNTER_COLOR":
-                color = JColorChooser.showDialog(null, "Wybierz kolor Pionka", samotnik.getCounterColor());
+            }
+            case "COUNTER_COLOR": {
+                String title = Util.getResourceBundle().getString("modal.counter_color.title");
+                color = JColorChooser.showDialog(null, title, samotnik.getCounterColor());
                 samotnik.setCounterColor(color);
                 break;
+            }
             case "POINT_COLOR": {
+                String title = Util.getResourceBundle().getString("modal.selection_color.title");
+                String text = Util.getResourceBundle().getString("modal.selection_color.text");
                 String[] colors = {"YELLOW", "GREEN", "GRAY"};
-                String selection;
-                selection = (String) JOptionPane.showInputDialog(null, "Wybierz kolor zaznaczenia pionka:", "Wybor koloru:", JOptionPane.WARNING_MESSAGE, null, colors, colors[0]);
+                String selection = (String) JOptionPane.showInputDialog(null, text, title, JOptionPane.WARNING_MESSAGE, null, colors, colors[0]);
                 switch (selection) {
                     case "YELLOW":
                         samotnik.setPointColor(Color.YELLOW);

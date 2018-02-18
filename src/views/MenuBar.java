@@ -3,45 +3,46 @@ package views;
 import listeners.KeyListener;
 import listeners.MenuBarListener;
 import models.Board;
+import util.Util;
 
 import javax.swing.*;
 
 
 public class MenuBar extends JMenuBar {
-    private final JMenu gameMenu, moveMenu, settingsMenu, helpMenu, colorSelectMenu;
-    private final JMenuItem mNewGame, mEnd, mSelect, mLeft, mRight, mUp, mDown, mIGame, mIAuthor, mBackgroundColor, mCounterColor, mPointColor, mRed, mBlue;
+    private final JMenu gameMenu, moveMenu, settingsMenu, helpMenu, colorSelectionMenu;
+    private final JMenuItem mNewGame, mEnd, mSelect, mLeft, mRight, mUp, mDown, mIGame, mIApplication, mBackgroundColor, mCounterColor, mPointColor, mRed, mBlue;
     private final JRadioButtonMenuItem rBritish, rEuropean;
     private final ButtonGroup bgVersion;
 
     {
-        gameMenu = new JMenu("Gra");
-        mNewGame = new JMenuItem("Nowa Gra", 'N');
-        mEnd = new JMenuItem("Koniec Gry", 'K');
+        gameMenu = new JMenu(Util.getResourceBundle().getString("menu.game"));
+        mNewGame = new JMenuItem(Util.getResourceBundle().getString("menu.game.new"), 'N');
+        mEnd = new JMenuItem(Util.getResourceBundle().getString("menu.game.end"), 'K');
 
-        moveMenu = new JMenu("Ruchy");
-        mSelect = new JMenuItem("Zaznacz");
-        mLeft = new JMenuItem("Ruch w lewo");
-        mRight = new JMenuItem("Ruch w prawo");
-        mUp = new JMenuItem("Ruch w gore");
-        mDown = new JMenuItem("Ruch w dol");
+        moveMenu = new JMenu(Util.getResourceBundle().getString("menu.movement"));
+        mSelect = new JMenuItem(Util.getResourceBundle().getString("movement.select"));
+        mLeft = new JMenuItem(Util.getResourceBundle().getString("movement.left"));
+        mRight = new JMenuItem(Util.getResourceBundle().getString("movement.right"));
+        mUp = new JMenuItem(Util.getResourceBundle().getString("movement.up"));
+        mDown = new JMenuItem(Util.getResourceBundle().getString("movement.down"));
 
-        settingsMenu = new JMenu("Ustawienia");
+        settingsMenu = new JMenu(Util.getResourceBundle().getString("menu.settings"));
 
-        rBritish = new JRadioButtonMenuItem("Wersja Brytyjska");
-        rEuropean = new JRadioButtonMenuItem("Wersja Europejska");
+        rBritish = new JRadioButtonMenuItem(Util.getResourceBundle().getString("menu.settings.version.british"));
+        rEuropean = new JRadioButtonMenuItem(Util.getResourceBundle().getString("menu.settings.version.european"));
         bgVersion = new ButtonGroup();
 
-        mBackgroundColor = new JMenuItem("Zmien kolor tla");
-        mCounterColor = new JMenuItem("Zmien kolor pionkow");
-        mPointColor = new JMenuItem("Zmien kolor wskaznika");
-        colorSelectMenu = new JMenu("Zmien kolor wybranego pionka");
+        mBackgroundColor = new JMenuItem(Util.getResourceBundle().getString("menu.settings.color.background"));
+        mCounterColor = new JMenuItem(Util.getResourceBundle().getString("menu.settings.color.counter"));
+        mPointColor = new JMenuItem(Util.getResourceBundle().getString("menu.settings.color.point"));
+        colorSelectionMenu = new JMenu(Util.getResourceBundle().getString("menu.settings.color.selection"));
 
-        mRed = new JMenuItem("Czerowny");
-        mBlue = new JMenuItem("Niebieski");
+        mRed = new JMenuItem(Util.getResourceBundle().getString("menu.settings.colors.red"));
+        mBlue = new JMenuItem(Util.getResourceBundle().getString("menu.settings.colors.blue"));
 
-        helpMenu = new JMenu("Pomoc");
-        mIGame = new JMenuItem("O Grze");
-        mIAuthor = new JMenuItem("O Aplikacji");
+        helpMenu = new JMenu(Util.getResourceBundle().getString("menu.help"));
+        mIGame = new JMenuItem(Util.getResourceBundle().getString("menu.help.game"));
+        mIApplication = new JMenuItem(Util.getResourceBundle().getString("menu.help.application"));
     }
 
 
@@ -76,15 +77,15 @@ public class MenuBar extends JMenuBar {
         settingsMenu.add(mCounterColor);
         settingsMenu.add(mPointColor);
 
-        colorSelectMenu.add(mRed);
-        colorSelectMenu.add(mBlue);
-        settingsMenu.add(colorSelectMenu);
+        colorSelectionMenu.add(mRed);
+        colorSelectionMenu.add(mBlue);
+        settingsMenu.add(colorSelectionMenu);
 
         add(Box.createGlue());
 
         add(helpMenu);
         helpMenu.add(mIGame);
-        helpMenu.add(mIAuthor);
+        helpMenu.add(mIApplication);
     }
 
     private void setAccelerator() {
@@ -103,7 +104,7 @@ public class MenuBar extends JMenuBar {
         mRight.setActionCommand("RIGHT");
         mUp.setActionCommand("UP");
         mDown.setActionCommand("DOWN");
-        mIAuthor.setActionCommand("ABOUT_AUTHOR");
+        mIApplication.setActionCommand("ABOUT_APPLICATION");
         mIGame.setActionCommand("ABOUT_GAME");
         mBackgroundColor.setActionCommand("BACKGROUND_COLOR");
         mCounterColor.setActionCommand("COUNTER_COLOR");
@@ -122,7 +123,7 @@ public class MenuBar extends JMenuBar {
         mRight.addActionListener(new KeyListener(board));
         mUp.addActionListener(new KeyListener(board));
         mDown.addActionListener(new KeyListener(board));
-        mIAuthor.addActionListener(new MenuBarListener());
+        mIApplication.addActionListener(new MenuBarListener());
         mIGame.addActionListener(new MenuBarListener());
         mBackgroundColor.addActionListener(new MenuBarListener());
         mCounterColor.addActionListener(new MenuBarListener());
