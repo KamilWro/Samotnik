@@ -2,6 +2,7 @@ package listeners;
 
 
 import models.Samotnik;
+import util.GameVersion;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,10 +88,10 @@ public class MenuBarListener implements ActionListener {
                 samotnik.setSelectionColor(Color.BLUE);
                 break;
             case "Bryt":
-                samotnik.setVersionE(false);
+                samotnik.setVersion(GameVersion.British);
                 break;
             case "Euro":
-                samotnik.setVersionE(true);
+                samotnik.setVersion(GameVersion.European);
                 break;
         }
         samotnik.update();

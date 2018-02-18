@@ -1,6 +1,7 @@
 package models;
 
 
+import util.GameVersion;
 import views.Window;
 
 import java.awt.*;
@@ -16,13 +17,14 @@ public class Samotnik {
     private Color counterColor, backgroundColor, pointColor, selectionColor;
     private Window window;
     private Board board;
-    private boolean versionE;
+    private GameVersion version;
 
     private Samotnik() {
         counterColor = Color.DARK_GRAY;
         backgroundColor = Color.ORANGE;
         pointColor = Color.LIGHT_GRAY;
         selectionColor = Color.RED;
+        version = GameVersion.British;
     }
 
     public static Samotnik getInstance() {
@@ -33,12 +35,12 @@ public class Samotnik {
     }
 
     public void init() {
-        board = new Board(versionE);
+        board = new Board(version);
         window = new Window(board);
     }
 
     public void newGame() {
-        board.reset(versionE);
+        board.reset(version);
     }
 
     public Color getBackgroundColor() {
@@ -73,26 +75,16 @@ public class Samotnik {
         this.selectionColor = selectionColor;
     }
 
-    /**
-     * Czy gra się zakończyła?
-     *
-     * @return Koniec gry
-     */
     public boolean isEnd() {
         return !board.isPossibleMove();
     }
 
-    /**
-     * Określa wersje gry
-     *
-     * @return
-     */
-    public boolean isVersionE() {
-        return versionE;
+    public GameVersion getVersion() {
+        return version;
     }
 
-    public void setVersionE(boolean versionE) {
-        this.versionE = versionE;
+    public void setVersion(GameVersion version) {
+        this.version = version;
     }
 
     public void update() {

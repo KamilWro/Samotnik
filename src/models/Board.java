@@ -1,28 +1,37 @@
 package models;
 
+import util.GameVersion;
+
 /**
  * Tablica z pionkami
  *
  * @author kamil
  */
 public class Board {
-    private final int MAX_ROW = 7;
-    private final int MAX_COLUMN = 7;
-    private final int CENTER_X = 3;
-    private final int CENTER_Y = 3;
-
-    private final boolean[][] available;
-    private final boolean[][] filled;
+    private GameVersion version;
+    private boolean[][] available;
+    private boolean[][] filled;
     private int numberOfCounters;
     private int turn;
     private boolean selected;
     private int selectedX;
     private int selectedY;
 
-    public Board(boolean europeanVersion) {
-        available = new boolean[MAX_ROW][MAX_COLUMN];
-        filled = new boolean[MAX_ROW][MAX_COLUMN];
-        reset(europeanVersion);
+    public Board(GameVersion version) {
+        reset(version);
+    }
+
+    public void reset(GameVersion version) {
+        this.version = version;
+        filled = version.getBoard();
+        available = version.getBoard();
+        numberOfCounters = version.getNumberOfCounter();
+
+        filled[version.getStartX()][version.getStartY()] = false;
+        selected = false;
+        turn = 1;
+        selectedX = version.getStartX();
+        selectedY = version.getStartY();
     }
 
     /**
@@ -99,8 +108,8 @@ public class Board {
      * @return
      */
     public boolean isPossibleMove() {
-        for (int i = 0; i < MAX_ROW; i++)
-            for (int j = 0; j < MAX_COLUMN; j++) {
+        for (int i = 0; i < version.getMaxRow(); i++)
+            for (int j = 0; j < version.getStartY(); j++) {
                 if (isPossibleMoveDown(i, j) || isPossibleMoveUp(i, j) || isPossibleMoveRight(i, j) || isPossibleMoveLeft(i, j))
                     return true;
             }
@@ -123,43 +132,12 @@ public class Board {
         return isFilled(x, y) && isFilled(x + 1, y) && isFree(x + 2, y);
     }
 
-    /**
-     * Resetuje tablice z pionkami
-     *
-     * @param europeanVersion
-     */
-    public void reset(boolean europeanVersion) {
-        for (int i = 2; i < 5; i++)
-            for (int j = 0; j < 7; j++) {
-                available[i][j] = true;
-                available[j][i] = true;
-                filled[i][j] = true;
-                filled[j][i] = true;
-            }
-        numberOfCounters = 32;
-
-        if (europeanVersion) {
-            for (int i = 1; i < 6; i++)
-                for (int j = 1; j < 6; j++) {
-                    available[i][j] = true;
-                    filled[i][j] = true;
-                }
-            numberOfCounters += 4;
-        }
-
-        filled[CENTER_X][CENTER_Y] = false;
-        selected = false;
-        turn = 1;
-        selectedX = CENTER_X;
-        selectedY = CENTER_Y;
-    }
-
     public int getNumberOfCounters() {
         return numberOfCounters;
     }
 
     public boolean isAvailable(int x, int y) {
-        return 0 <= x && x <= 6 && 0 <= y && y <= 6 && available[x][y];
+        return 0 <= x && x < version.getMaxRow() && 0 <= y && y < version.getMaxColumn() && available[x][y];
     }
 
     public boolean isFilled(int x, int y) {
