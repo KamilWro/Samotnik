@@ -30,10 +30,10 @@ public class PopupMenu extends JPopupMenu {
     }
 
     private void setCommand() {
-        mRight.setActionCommand("Prawo");
-        mDown.setActionCommand("Dol");
-        mLeft.setActionCommand("Lewo");
-        mUp.setActionCommand("Gora");
+        mRight.setActionCommand("RIGHT");
+        mDown.setActionCommand("DOWN");
+        mLeft.setActionCommand("LEFT");
+        mUp.setActionCommand("UP");
     }
 
     private void addListeners(Board board) {

@@ -23,13 +23,13 @@ public class MenuBarListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String source = e.getActionCommand();
         switch (source) {
-            case "NowaGra":
+            case "NEW_GAME":
                 samotnik.newGame();
                 break;
-            case "KoniecGry":
+            case "GAME_OVER":
                 samotnik.close();
                 break;
-            case "OGrze":
+            case "ABOUT_GAME":
                 String s = "Najprawdopodobniej samotnik, to gra wymyślona w XII wieku we Francji przez więźnia \n"
                         + "przebywającego w Bastylii, który uprzyjemniał sobie czas spędzony w odosobnieniu. \n"
                         + "Samotnik, jest prostą grą logiczną dla jednej osoby.Pole do gry ma kształt krzyża z \n"
@@ -39,48 +39,48 @@ public class MenuBarListener implements ActionListener {
                         + "najlepiej jeśli będzie to pionek w centrum.";
                 JOptionPane.showMessageDialog(null, s, "O Grze", JOptionPane.INFORMATION_MESSAGE);
                 break;
-            case "OApk":
+            case "ABOUT_AUTHOR":
                 Formatter formatter = new Formatter();
                 formatter.format("%-25s %s %n%-23s %s %n%-17s %s", "Autor:", "Kamil Breczko", "Wersja:", "1.1", "Data wydania:", "09 12 2016");
 
                 JOptionPane.showMessageDialog(null, formatter.toString(), "O Aplikacji", JOptionPane.INFORMATION_MESSAGE);
                 break;
-            case "KolorTlo":
+            case "BACKGROUND_COLOR":
                 color = samotnik.getBackgroundColor();
                 color = JColorChooser.showDialog(null, "Wybierz kolor tla planszy", color);
                 samotnik.setBackgroundColor(color);
                 break;
-            case "KolorPi":
+            case "COUNTER_COLOR":
                 color = JColorChooser.showDialog(null, "Wybierz kolor Pionka", samotnik.getCounterColor());
                 samotnik.setCounterColor(color);
                 break;
-            case "KolorWyp": {
-                String[] colors = {"Zolty", "Zielony", "Szary"};
+            case "POINT_COLOR": {
+                String[] colors = {"YELLOW", "GREEN", "GRAY"};
                 String selection;
                 selection = (String) JOptionPane.showInputDialog(null, "Wybierz kolor zaznaczenia pionka:", "Wybor koloru:", JOptionPane.WARNING_MESSAGE, null, colors, colors[0]);
                 switch (selection) {
-                    case "Zolty":
+                    case "YELLOW":
                         samotnik.setPointColor(Color.YELLOW);
                         break;
-                    case "Zielony":
+                    case "GREEN":
                         samotnik.setPointColor(Color.GREEN);
                         break;
-                    case "Szary":
+                    case "GRAY":
                         samotnik.setPointColor(Color.GRAY);
                         break;
                 }
                 break;
             }
-            case "Czerwony":
+            case "RED":
                 samotnik.setSelectionColor(Color.RED);
                 break;
-            case "Niebieski":
+            case "BLUE":
                 samotnik.setSelectionColor(Color.BLUE);
                 break;
-            case "Bryt":
+            case "BRITISH":
                 samotnik.setVersion(GameVersion.BRITISH);
                 break;
-            case "Euro":
+            case "EUROPEAN":
                 samotnik.setVersion(GameVersion.EUROPEAN);
                 break;
         }

@@ -96,22 +96,22 @@ public class MenuBar extends JMenuBar {
     }
 
     private void setCommand() {
-        mNewGame.setActionCommand("NowaGra");
-        mEnd.setActionCommand("KoniecGry");
-        mSelect.setActionCommand("Zaznacz");
-        mLeft.setActionCommand("Lewo");
-        mRight.setActionCommand("Prawo");
-        mUp.setActionCommand("Gora");
-        mDown.setActionCommand("Dol");
-        mIAuthor.setActionCommand("OApk");
-        mIGame.setActionCommand("OGrze");
-        mBackgroundColor.setActionCommand("KolorTlo");
-        mCounterColor.setActionCommand("KolorPi");
-        mPointColor.setActionCommand("KolorWyp");
-        rBritish.setActionCommand("Bryt");
-        rEuropean.setActionCommand("Euro");
-        mRed.setActionCommand("Czerwony");
-        mBlue.setActionCommand("Niebieski");
+        mNewGame.setActionCommand("NEW_GAME");
+        mEnd.setActionCommand("GAME_OVER");
+        mSelect.setActionCommand("SELECT");
+        mLeft.setActionCommand("LEFT");
+        mRight.setActionCommand("RIGHT");
+        mUp.setActionCommand("UP");
+        mDown.setActionCommand("DOWN");
+        mIAuthor.setActionCommand("ABOUT_AUTHOR");
+        mIGame.setActionCommand("ABOUT_GAME");
+        mBackgroundColor.setActionCommand("BACKGROUND_COLOR");
+        mCounterColor.setActionCommand("COUNTER_COLOR");
+        mPointColor.setActionCommand("POINT_COLOR");
+        rBritish.setActionCommand("BRITISH");
+        rEuropean.setActionCommand("EUROPEAN");
+        mRed.setActionCommand("RED");
+        mBlue.setActionCommand("BLUE");
     }
 
     private void addListener(Board board) {
@@ -133,11 +133,6 @@ public class MenuBar extends JMenuBar {
         mBlue.addActionListener(new MenuBarListener());
     }
 
-    /**
-     * Aktualizacja Menu
-     *
-     * @param enable
-     */
     public void update(boolean enable) {
         rEuropean.setEnabled(enable);
         rBritish.setEnabled(enable);

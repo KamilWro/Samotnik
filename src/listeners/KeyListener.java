@@ -18,39 +18,39 @@ public class KeyListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String source = e.getActionCommand();
         switch (source) {
-            case "Zaznacz": {
+            case "SELECT": {
                 board.select();
                 break;
             }
-            case "Lewo": {
-                nextCounter("W");
+            case "LEFT": {
+                nextCounter("LEFT");
                 board.move(x, y, true);
                 break;
             }
-            case "Prawo": {
-                nextCounter("E");
+            case "RIGHT": {
+                nextCounter("RIGHT");
                 board.move(x, y, true);
                 break;
             }
-            case "Gora": {
-                nextCounter("N");
+            case "UP": {
+                nextCounter("UP");
                 board.move(x, y, true);
                 break;
             }
-            case "Dol": {
-                nextCounter("S");
+            case "DOWN": {
+                nextCounter("DOWN");
                 board.move(x, y, true);
                 break;
             }
         }
         Samotnik.getInstance().update();
     }
-    
+
     private void nextCounter(String direction) {
         x = board.getSelectedX();
         y = board.getSelectedY();
         switch (direction) {
-            case "N": {
+            case "UP": {
                 for (int i = y; i >= 0; i--) {
                     for (int j = (y == i) ? x - 1 : 6; j >= 0; j--) {
                         if (board.isFilled(j, i)) {
@@ -62,7 +62,7 @@ public class KeyListener implements ActionListener {
                 }
                 break;
             }
-            case "S": {
+            case "DOWN": {
                 for (int i = y; i < 7; i++) {
                     for (int j = (y == i) ? x + 1 : 0; j < 7; j++) {
                         if (board.isFilled(j, i)) {
@@ -74,7 +74,7 @@ public class KeyListener implements ActionListener {
                 }
                 break;
             }
-            case "W": {
+            case "LEFT": {
                 for (int i = x; i >= 0; i--) {
                     for (int j = (x == i) ? y - 1 : 6; j >= 0; j--) {
                         if (board.isFilled(i, j)) {
@@ -86,7 +86,7 @@ public class KeyListener implements ActionListener {
                 }
                 break;
             }
-            case "E": {
+            case "RIGHT": {
                 for (int i = x; i < 7; i++) {
                     for (int j = (x == i) ? y + 1 : 0; j < 7; j++) {
                         if (board.isFilled(i, j)) {
